@@ -9,7 +9,7 @@ const path = require('path')
 const url = require('url')
 const xlsx = require('xlsx');
 const utils = xlsx.utils;
-let workbook = xlsx.readFile('test.xlsx');
+/*let workbook = xlsx.readFile('test.xlsx');
 let sheetNames = workbook.SheetNames;
 worksheet = workbook.Sheets['Sheet1'];
 let range = worksheet['!ref'];
@@ -26,7 +26,7 @@ for (let r=rangeVal.s.r ; r <= rangeVal.e.r ; r++) {
            console.log(cell+":"+value)
         }
     }
-}
+}*/
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
