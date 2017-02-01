@@ -7,9 +7,9 @@ const BrowserWindow = electron.BrowserWindow
 
 const path = require('path')
 const url = require('url')
-const xlsx = require('xlsx');
+/*const xlsx = require('xlsx');
 const utils = xlsx.utils;
-/*let workbook = xlsx.readFile('test.xlsx');
+let workbook = xlsx.readFile('test.xlsx');
 let sheetNames = workbook.SheetNames;
 worksheet = workbook.Sheets['Sheet1'];
 let range = worksheet['!ref'];
