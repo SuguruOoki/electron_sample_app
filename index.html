@@ -6,9 +6,11 @@
     </head>
   <body>
         <script type='text/javascript' src=download.js></script>
+        <script type='text/javascript' src=content_get.js></script>
+        <a id="content_get" href="#" onclick="sheet_content_get()">画面表示</a>
         <a id="download" href="#" download="test.txt" onclick="handleDownload()">ダウンロード</a>
+        <input type="file" name="inputFile" id="inputFile">
   </body>
-
   <script>
     // You can also require other files to run in this process
     require('./renderer.js')

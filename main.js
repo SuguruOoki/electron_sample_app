@@ -7,26 +7,6 @@ const BrowserWindow = electron.BrowserWindow
 
 const path = require('path')
 const url = require('url')
-/*const xlsx = require('xlsx');
-const utils = xlsx.utils;
-let workbook = xlsx.readFile('test.xlsx');
-let sheetNames = workbook.SheetNames;
-worksheet = workbook.Sheets['Sheet1'];
-let range = worksheet['!ref'];
-let rangeVal = utils.decode_range(range);
-console.log(rangeVal);
-var content = rangeVal;
-var value
-for (let r=rangeVal.s.r ; r <= rangeVal.e.r ; r++) {
-    for (let c=rangeVal.s.c ; c <= rangeVal.e.c ; c++) {
-        let adr = utils.encode_cell({c:c, r:r});
-        let cell = worksheet[adr];
-        if(!(value == null | value == "" | value == undefined)){
-           value = cell.v;
-           console.log(cell+":"+value)
-        }
-    }
-}*/
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
