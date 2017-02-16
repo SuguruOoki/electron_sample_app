@@ -12,6 +12,8 @@ const url = require('url')
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
 
+
+
 function createWindow () {
   // Create the browser window.
   mainWindow = new BrowserWindow({width: 800, height: 600})
@@ -22,6 +24,13 @@ function createWindow () {
     protocol: 'file:',
     slashes: true
   }))
+    var fs = require('fs');
+    var data = {
+    hoge: 100,
+    foo: 'a',
+    bar: true,
+    };
+    fs.writeFile('hoge.json', JSON.stringify(data, null, '    '));
 
   // Open the DevTools.
   mainWindow.webContents.openDevTools()
