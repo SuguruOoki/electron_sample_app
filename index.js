@@ -1,65 +1,70 @@
-const xlsx = require('xlsx');
-const utils = xlsx.utils;
-let workbook = xlsx.readFile('test.xlsx');
-let sheetNames = workbook.SheetNames;
-worksheet = workbook.Sheets['1月'];
-var range = worksheet['!ref'];
-var rangeVal = utils.decode_range(range);
-var len = utils.sheet_to_json(worksheet).length;
-var content = JSON.stringify(utils.sheet_to_json(worksheet));
-var text = "";
-var first = "①Pepperの発話内容";
-var second = "②反応する言葉";
-var third = "③お客さんの言葉に対するPepperの反応(Pepper言語で)";
-var forth = "④反応する言葉";
-var fifth = "⑤お客さんの言葉に対するPepperの反応";
-var start_date = "開始日";
-var end_date = "終了日";
+
+function LoadWrite(filename,sheetname){
+    var xlsx = require('xlsx');
+    var utils = xlsx.utils;
+    var workbook = xlsx.readFile(filename);
+    var sheetNames = workbook.SheetNames;
+    var worksheet = workbook.Sheets[sheetNames[1]];
+    //document.write(sheetNames[1]);
+    //document.write(worksheet);
+    var range = worksheet['!ref'];
+    //document.write(range);
+    //var rangeVal = utils.decode_range(range);
+    var len = utils.sheet_to_json(worksheet).length;
+    var content = JSON.stringify(utils.sheet_to_json(worksheet));
+    var text = "";
+    var first = "①Pepperの発話内容";
+    var second = "②反応する言葉";
+    var third = "③お客さんの言葉に対するPepperの反応(Pepper言語で)";
+    var forth = "④反応する言葉";
+    var fifth = "⑤お客さんの言葉に対するPepperの反応";
+    var start_date = "開始日";
+    var end_date = "終了日";
 
 // 重複を削除したリスト
 //var list = a.filter(function (x, i, self) {return self.indexOf(x) === i;});
 
 date_dic = {};
-start_end_date = []; 
 
 for (var i = 0; i < len; i++) {
     if(typeof(utils.sheet_to_json(worksheet)[i][first]) !== "undefined"){
-            date_dic[utils.sheet_to_json(worksheet)[i][first]] = [utils.sheet_to_json(worksheet)[i][start_date],utils.sheet_to_json(worksheet)[i][end_date]];
-            document.write(dic[utils.sheet_to_json(worksheet)[i][first]]+"<br>");
+        date_dic[utils.sheet_to_json(worksheet)[i][first]] = [utils.sheet_to_json(worksheet)[i][start_date],utils.sheet_to_json(worksheet)[i][end_date]];
+        document.write([utils.sheet_to_json(worksheet)[i][start_date],utils.sheet_to_json(worksheet)[i][end_date]]+"<br>");
+        //document.write(date_dic[utils.sheet_to_json(worksheet)[i][first]]+"<br>");
     }
 }
 
-var arr;
+var arr = [];
 
 for(key in date_dic){
-  arr.append(date_dic[key]);
-  document.write(key+":"+date_dic[key]);
+  arr.push(date_dic[key]);
+  //document.write(key+":"+date_dic[key]);
 }
 
 
 
-var result = Object.keys(date_dic).filter( (key) => { return date_dic[key] === 23,23});
+// var result = Object.keys(date_dic).filter( (key) => { return date_dic[key] === 23,23});
 
-//document.write(result);
+// document.write("result:"+result+"<br>");
 
 var arrayGetValues = function(array) {
     var values = [];
- 
+
     if (array) {
         for (var key in array) {
             values.push(array[key]);
         }
     }
- 
+
     return values;
 };
 
 var arrayValues = arrayGetValues(arr);
 
-document.write(arrayValues);
+document.write("arrayValues:"+arrayValues+"<br>");
 
 var re = Array.from(new Set(arrayValues));
-document.write(re);
+document.write("re:"+re+"<br>");
 
 var count = 0;
 //text = text + "length:"+len+"\n\n");
@@ -82,10 +87,10 @@ for (var i = 0; i < len; i++) {
         else if(typeof(utils.sheet_to_json(worksheet)[i][second]) !== "undefined" && typeof(utils.sheet_to_json(worksheet)[i][third]) !== "undefined"){
             // text = text + "\n        u1:(\"{*}"+JSON.stringify(utils.sheet_to_json(worksheet)[i][second]).replace(/["']+/g, '')+" {*} $SekkyakuPepper/Scene<>conversation $SekkyakuPepper/Scene<>speech\""+")\n");
             // text = text + "\n                \\vct=140\\ \\rspd=100\\ $SekkyakuPepper/Scene=conversation\n                "+JSON.stringify(utils.sheet_to_json(worksheet)[i][third]).replace(/["']+/g, '')+"\n            \\vct=140\\ \\rspd=100\\ $SekkyakuPepper/Scene=conversation_end\n");
-            text = text + "\n        u1:(\"{*}"+JSON.stringify(utils.sheet_to_json(worksheet)[i][second]).replace(/["']+/g, '')+" {*} $SekkyakuPepper/Scene<>conversation $SekkyakuPepper/Scene<>speech\""+")\n";
-            text = text + "\n            \\vct=140\\ \\rspd=100\\ $SekkyakuPepper/Scene=conversation\n                "+JSON.stringify(utils.sheet_to_json(worksheet)[i][third]).replace(/["']+/g, '')+"\n            \\vct=140\\ \\rspd=100\\ $SekkyakuPepper/Scene=conversation_end\n";
+                text = text + "\n        u1:(\"{*}"+JSON.stringify(utils.sheet_to_json(worksheet)[i][second]).replace(/["']+/g, '')+" {*} $SekkyakuPepper/Scene<>conversation $SekkyakuPepper/Scene<>speech\""+")\n";
+                text = text + "\n            \\vct=140\\ \\rspd=100\\ $SekkyakuPepper/Scene=conversation\n                "+JSON.stringify(utils.sheet_to_json(worksheet)[i][third]).replace(/["']+/g, '')+"\n            \\vct=140\\ \\rspd=100\\ $SekkyakuPepper/Scene=conversation_end\n";
         }
-    }
+}
     //最初が空欄かつ二番目が空欄でない場合
     else if(typeof(utils.sheet_to_json(worksheet)[i][first]) === "undefined" && typeof(utils.sheet_to_json(worksheet)[i][second]) !== "undefined"){
         text = text + "\n        u1:(\"{*}"+JSON.stringify(utils.sheet_to_json(worksheet)[i][second]).replace(/["']+/g, '')+" {*} $SekkyakuPepper/Scene<>conversation $SekkyakuPepper/Scene<>speech\""+")\n";
@@ -96,19 +101,19 @@ for (var i = 0; i < len; i++) {
         text = text + "\n                \\vct=140\\ \\rspd=100\\ $SekkyakuPepper/Scene=conversation\n                "+JSON.stringify(utils.sheet_to_json(worksheet)[i][third]).replace(/["']+/g, '')+"\n            \\vct=140\\ \\rspd=100\\ $SekkyakuPepper/Scene=conversation_end\n";
     }
 
+    }
+ return text;
 }
 
-
-
-function textSave(name, text) {
+function textSave(text) {
     var blob = new Blob( [text], {type: 'text/plain'} );
     var link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
-    link.download = name + '.txt';
+    link.download ='output.txt';
     link.click();
 }
 
-//textSave('myfile',text);
+// textSave('myfile',text);
 
 
 

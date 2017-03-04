@@ -1,18 +1,50 @@
 <!DOCTYPE html>
 <html lang="ja">
-    <head>
-        <meta charset="utf-8">
-        <title>Download Sample</title>
-    </head>
-  <body>
-        <!--<script type='text/javascript' src="download.js"></script>-->
+<head>
+  <meta charset="utf-8">
+  <title>Download Sample</title>
+</head>
+<body>
+  <!--<script type='text/javascript' src="download.js"></script>-->
 
-        <script type='text/javascript' src="index.js"></script>
-        <span id="export-link" onclick=></span>
-    
-  </body>
+  <script type='text/javascript' src="index.js"></script>
   <script>
+    /** documentにドラッグされた場合 / ドロップされた場合 */
+    document.ondragover = document.ondrop = function(e) {
+      e.preventDefault(); // イベントの伝搬を止めて、アプリケーションのHTMLとファイルが差し替わらないようにする
+      return false;
+    };
+  </script>
+  <div id="dropzone" style="border:1px solid gray; text-align:center; width:300px;height:300px;">
+    Excelファイルをドラッグ&ドロップ
+  </div>
+  <script>
+    var holder = document.getElementById('dropzone');
+    /** hoverエリアにドラッグされた場合 */
+    holder.ondragover = function () {
+      return false;
+    };
+    /** hoverエリアから外れた or ドラッグが終了した */
+    holder.ondragleave = holder.ondragend = function () {
+      return false;
+    };
+    /** hoverエリアにドロップされた */
+    holder.ondrop = function (e) {
+      e.preventDefault(); // イベントの伝搬を止めて、アプリケーションのHTMLとファイルが差し替わらないようにする
+
+      var file = e.dataTransfer.files[0];
+      holder.innerText = file.name;
+      //console.log(file.path);
+      //console.log(LoadWrite(file.path,'1月'));
+      var content = LoadWrite(file.path,'1月');
+      //textSave(content);
+
+      return false;
+    };
+  </script>
+</body>
+<script>
     // You can also require other files to run in this process
     require('./renderer.js')
-  </script>
+</script>
 </html>
