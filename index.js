@@ -29,7 +29,7 @@ date_dic = {};
 for (var i = 0; i < len; i++) {
     if(typeof(utils.sheet_to_json(worksheet)[i][first]) !== "undefined"){
         date_dic[utils.sheet_to_json(worksheet)[i][first]] = [utils.sheet_to_json(worksheet)[i][start_date],utils.sheet_to_json(worksheet)[i][end_date]];
-        document.write([utils.sheet_to_json(worksheet)[i][start_date],utils.sheet_to_json(worksheet)[i][end_date]]+"<br>");
+        document.write([utils.sheet_to_json(worksheet)[i][start_date],utils.sheet_to_json(worksheet)[i][end_date]]+":" +utils.sheet_to_json(worksheet)[i][first]+"<br>");
         //document.write(date_dic[utils.sheet_to_json(worksheet)[i][first]]+"<br>");
     }
 }
@@ -114,16 +114,3 @@ function textSave(text) {
 }
 
 // textSave('myfile',text);
-
-
-
-// text = text + content);
-
-// var a = document.createElement('a');
-// a.textContent = 'export';
-// a.download = 'context.json';
-// a.href = window.URL.createObjectURL(new Blob([content], { type: 'text/plain' }));
-// a.dataset.downloadurl = ['text/plain', a.download, a.href].join(':');
- 
-// var exportLink = document.getElementById('export-link');
-// exportLink.appendChild(a);
