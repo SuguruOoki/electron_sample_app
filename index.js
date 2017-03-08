@@ -80,8 +80,6 @@ for (var i = 0; i < len; i++) {
         }
         //最初が空欄ではなく２、３番目がきっちりあった場合
         else if(typeof(utils.sheet_to_json(worksheet)[i][second]) !== "undefined" && typeof(utils.sheet_to_json(worksheet)[i][third]) !== "undefined"){
-            // text = text + "\n        u1:(\"{*}"+JSON.stringify(utils.sheet_to_json(worksheet)[i][second]).replace(/["']+/g, '')+" {*} $SekkyakuPepper/Scene<>conversation $SekkyakuPepper/Scene<>speech\""+")\n");
-            // text = text + "\n                \\vct=140\\ \\rspd=100\\ $SekkyakuPepper/Scene=conversation\n                "+JSON.stringify(utils.sheet_to_json(worksheet)[i][third]).replace(/["']+/g, '')+"\n            \\vct=140\\ \\rspd=100\\ $SekkyakuPepper/Scene=conversation_end\n");
                 text = text + "\n        u1:(\"{*}"+JSON.stringify(utils.sheet_to_json(worksheet)[i][second]).replace(/["']+/g, '')+" {*} $SekkyakuPepper/Scene<>conversation $SekkyakuPepper/Scene<>speech\""+")\n";
                 text = text + "\n            \\vct=140\\ \\rspd=100\\ $SekkyakuPepper/Scene=conversation\n                "+JSON.stringify(utils.sheet_to_json(worksheet)[i][third]).replace(/["']+/g, '')+"\n            \\vct=140\\ \\rspd=100\\ $SekkyakuPepper/Scene=conversation_end\n";
         }
