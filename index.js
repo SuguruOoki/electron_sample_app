@@ -5,11 +5,7 @@ function LoadWrite(sheet,filename,sheetname){
     var workbook = xlsx.readFile(filename);
     var sheetNames = workbook.SheetNames;
     var worksheet = workbook.Sheets[sheetNames[1]];
-    //document.write(sheetNames[1]);
-    //document.write(worksheet);
     var range = worksheet['!ref'];
-    //document.write(range);
-    //var rangeVal = utils.decode_range(range);
     var len = utils.sheet_to_json(worksheet).length;
     var content = JSON.stringify(utils.sheet_to_json(worksheet));
     var first = "①Pepperの発話内容";
@@ -21,7 +17,6 @@ function LoadWrite(sheet,filename,sheetname){
     var end_date = "終了日";
 
     // 重複を削除したリスト
-
     date_dic = {};
     var number = 0;//conversationのナンバーと一致させるための変数
     var text = "";
@@ -60,9 +55,6 @@ function LoadWrite(sheet,filename,sheetname){
         }
     }
 
-    document.write("<br>");
-    for(key in unique){document.write("unique:"+unique[key]+"<br>");}
-
     //uniqueとdate_dicを元にconversationのナンバーで分岐文を記述する。
     text = text + "proposal:%conversation_season_topic\n\n";
     //console.log("unique:"+unique);
@@ -78,8 +70,6 @@ function LoadWrite(sheet,filename,sheetname){
         }
         text = text + "    ]\n"
     }
-    // document.write("<br>");
-    // for (var key in unique) {document.write(unique[key]+"<br>");}
     var count = 0;
     //text = text + "length:"+len+"\n\n");
     for (var i = 0; i < len; i++) {
@@ -123,5 +113,3 @@ function textSave(text,month) {
     link.download = month.toString()+'月のトピック.txt';
     link.click();
 };
-
-//textSave('myfile',text);

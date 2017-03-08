@@ -2,11 +2,9 @@
 <html lang="ja">
 <head>
   <meta charset="utf-8">
-  <title>Download Sample</title>
+  <title>Pepperトピック自動生成ツール</title>
 </head>
 <body>
-  <!--<script type='text/javascript' src="download.js"></script>-->
-
   <script type='text/javascript' src="index.js"></script>
   <script>
     /** documentにドラッグされた場合 / ドロップされた場合 */
@@ -29,9 +27,11 @@
    <option value="11">11月</option>
    <option value="12">12月</option>
   </select></form>
+  <br />
   <div id="dropzone" style="border:1px solid gray; text-align:center; width:300px;height:300px;">
     Excelファイルをドラッグ&ドロップ
   </div>
+  <a href="./test.xlsx">テンプレートファイルをダウンロード</a><br />
   <script>
     var holder = document.getElementById('dropzone');
     /** hoverエリアにドラッグされた場合 */

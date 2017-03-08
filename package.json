@@ -1,5 +1,5 @@
 {
-  "name": "electron-quick-start",
+  "name": "auto_topic",
   "version": "1.0.0",
   "description": "A minimal Electron application",
   "main": "main.js",
@@ -12,11 +12,15 @@
     "quick",
     "start",
     "tutorial",
-    "demo"
+    "demo",
+    "Pepper"
   ],
-  "author": "GitHub",
+  "author": "Suguru Oki",
   "license": "CC0-1.0",
   "devDependencies": {
     "electron": "^1.4.1"
+  },
+  "dependencies": {
+    "xlsx": "^0.8.7"
   }
 }
