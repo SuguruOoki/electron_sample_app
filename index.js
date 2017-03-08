@@ -29,42 +29,37 @@ date_dic = {};
 for (var i = 0; i < len; i++) {
     if(typeof(utils.sheet_to_json(worksheet)[i][first]) !== "undefined"){
         date_dic[utils.sheet_to_json(worksheet)[i][first]] = [utils.sheet_to_json(worksheet)[i][start_date],utils.sheet_to_json(worksheet)[i][end_date]];
-        document.write([utils.sheet_to_json(worksheet)[i][start_date],utils.sheet_to_json(worksheet)[i][end_date]]+":" +utils.sheet_to_json(worksheet)[i][first]+"<br>");
-        //document.write(date_dic[utils.sheet_to_json(worksheet)[i][first]]+"<br>");
     }
 }
 
 var arr = [];
-
-for(key in date_dic){
-  arr.push(date_dic[key]);
-  //document.write(key+":"+date_dic[key]);
+//連想配列のvalueを取得する
+for(key in date_dic){arr.push(date_dic[key]);
 }
 
-
-
-// var result = Object.keys(date_dic).filter( (key) => { return date_dic[key] === 23,23});
-
-// document.write("result:"+result+"<br>");
-
-var arrayGetValues = function(array) {
-    var values = [];
-
-    if (array) {
-        for (var key in array) {
-            values.push(array[key]);
-        }
+//配列同士の比較を行う関数
+var isArrayEqual = function(array1, array2) {
+    if (JSON.stringify(array1) === JSON.stringify(array2)) {
+        return true;
     }
-
-    return values;
+    return false;
 };
 
-var arrayValues = arrayGetValues(arr);
+var unique = arr;
+//重複を排除したリスト(unique)を作成
+for (var i = 0; i < arr.length; i++) {
+    for (var j = 0; j < arr.length; j++) {
+        if(i == j){continue;}//同じインデックスの時は比較を飛ばす
+        else{
+            if(isArrayEqual(arr[i],arr[j]) === true){unique.splice(arr[i],1);}else{continue;}
+        }
+    }
+}
 
-document.write("arrayValues:"+arrayValues+"<br>");
+//uniqueとdate_dicを元にconversationのナンバーで分岐文を記述する。
 
-var re = Array.from(new Set(arrayValues));
-document.write("re:"+re+"<br>");
+document.write("<br>");
+for (var key in unique) {document.write(unique[key]+"<br>");}
 
 var count = 0;
 //text = text + "length:"+len+"\n\n");
@@ -113,4 +108,4 @@ function textSave(text) {
     link.click();
 }
 
-// textSave('myfile',text);
+//textSave('myfile',text);
